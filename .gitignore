@@ -1,0 +1,8 @@
+tools
+packages
+.vs
+.DS_Store
+bin
+obj
+*.zip
+*.exe
