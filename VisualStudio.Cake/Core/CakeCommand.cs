@@ -9,6 +9,7 @@ using System.ComponentModel.Design;
 using System.Globalization;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using System.Diagnostics;
 
 namespace VisualStudio.Cake.Core
 {
@@ -50,10 +51,18 @@ namespace VisualStudio.Cake.Core
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
+                var menuItem = new MenuCommand(this.StartCake, menuCommandID);
                 commandService.AddCommand(menuItem);
             }
         }
+
+        private void StartCake(object sender, EventArgs e)
+        {
+            var process = new Process();
+            process.StartInfo.FileName = "notepad.exe";
+            process.Start();
+        }
+
 
         /// <summary>
         /// Gets the instance of the command.
