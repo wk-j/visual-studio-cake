@@ -23,7 +23,8 @@ namespace VisualStudio.Cake.Core
 
             this.package = package;
 
-            OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            var commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
             if (commandService != null)
             {
                 var initId = new CommandID(CommandSet, 0x0100);
@@ -60,7 +61,7 @@ namespace VisualStudio.Cake.Core
             System.Threading.Tasks.Task.Run(() =>
             {
                 var dir = SolutionHelper.GetSolutionDir();
-                CakeHelper.ExecutePs("build", dir.FullName);
+                CakeHelper.ExecuteCmd("build", dir.FullName);
             });
         }
 
