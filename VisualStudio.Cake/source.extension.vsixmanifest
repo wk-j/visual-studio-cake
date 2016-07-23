@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="VisualStudio.Cake.Somnuk Wongkhan.4b3d030d-c19a-4fcc-a90e-804834bf2203" Version="1.0" Language="en-US" Publisher="Somnuk Wongkhan" />
+    <Identity Id="VisualStudio.Cake.Somnuk Wongkhan.fa8cfc52-c2a0-4cdf-a367-b4979d462225" Version="1.0" Language="en-US" Publisher="Somnuk Wongkhan" />
     <DisplayName>VisualStudio.Cake</DisplayName>
-    <Description xml:space="preserve">Run Cake Task in Visual Studio</Description>
+    <Description>Empty VSIX Project.</Description>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />

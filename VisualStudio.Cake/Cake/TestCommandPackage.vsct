@@ -22,7 +22,7 @@
 
   <!--The Commands section is where commands, menus, and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-  <Commands package="guidCakeCommandPackage">
+  <Commands package="guidTestCommandPackage">
     <!-- Inside this section we have different sub-sections: one for the menus, another
     for the menu groups, one for the buttons (the actual commands), one for the combos
     and the last one for the bitmaps used. Each element is identified by a command id that
@@ -36,8 +36,11 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidCakeCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidTestCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <!--
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      -->
+        <Parent guid="guidTestCommandPackageCmdSet" id="TopLevelMenu"/>
       </Group>
     </Groups>
 
@@ -52,11 +55,11 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCakeCommandPackageCmdSet" id="CakeCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCakeCommandPackageCmdSet" id="MyMenuGroup" />
+      <Button guid="guidTestCommandPackageCmdSet" id="TestCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidTestCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke CakeCommand</ButtonText>
+          <ButtonText>Invoke TestCommand</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -68,21 +71,34 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\CakeCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\TestCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
     </Bitmaps>
+
+    <Menus>
+      <Menu guid="guidTestCommandPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
+        <Strings>
+          <ButtonText>TestMenu</ButtonText>
+          <CommandName>TestMenu</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+    
   </Commands>
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidCakeCommandPackage" value="{5c7ce926-d3d0-4916-a62e-88cfeb26f835}" />
-
-    <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidCakeCommandPackageCmdSet" value="{9e7c55b0-a5d6-4cff-b246-01e3b2139fbc}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="CakeCommandId" value="0x0100" />
+    <GuidSymbol name="guidTestCommandPackage" value="{facf9730-92d7-466c-97fe-7ea00efdd319}" >
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{91a71bc6-717f-4fbf-8e83-d5dc36f3a60a}" >
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidTestCommandPackageCmdSet" value="{ac5c2a80-6a6f-41af-8aff-3c3627ecdae7}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="TestCommandId" value="0x0100" />
+      <IDSymbol name="TopLevelMenu" value="0x1021"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{80eb5aef-17f9-47d3-86ea-52ae3ce48e52}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />

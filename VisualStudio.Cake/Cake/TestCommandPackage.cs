@@ -1,5 +1,5 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="CakeCommandPackage.cs" company="Company">
+// <copyright file="TestCommandPackage.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 
-namespace VisualStudio.Cake.Core
+namespace VisualStudio.Cake.Test
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -38,19 +38,19 @@ namespace VisualStudio.Cake.Core
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(CakeCommandPackage.PackageGuidString)]
+    [Guid(TestCommandPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class CakeCommandPackage : Package
+    public sealed class TestCommandPackage : Package
     {
         /// <summary>
-        /// CakeCommandPackage GUID string.
+        /// TestCommandPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "5c7ce926-d3d0-4916-a62e-88cfeb26f835";
+        public const string PackageGuidString = "facf9730-92d7-466c-97fe-7ea00efdd319";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CakeCommand"/> class.
+        /// Initializes a new instance of the <see cref="TestCommand"/> class.
         /// </summary>
-        public CakeCommandPackage()
+        public TestCommandPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -66,7 +66,7 @@ namespace VisualStudio.Cake.Core
         /// </summary>
         protected override void Initialize()
         {
-            CakeCommand.Initialize(this);
+            TestCommand.Initialize(this);
             base.Initialize();
         }
 

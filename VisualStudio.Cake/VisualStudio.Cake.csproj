@@ -20,7 +20,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{D287D42B-8B54-410D-906E-BD71DAB167CD}</ProjectGuid>
+    <ProjectGuid>{9B4FBCBF-7E32-4D75-B49B-D7D2F4E4DBD8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VisualStudio.Cake</RootNamespace>
@@ -51,9 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core\CakeCommand.cs" />
-    <Compile Include="Core\CakeCommandPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cake\TestCommand.cs" />
+    <Compile Include="Cake\TestCommandPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
@@ -63,13 +63,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="Core\CakeCommandPackage.vsct">
-      <ResourceName>Menus.ctmenu</ResourceName>
-    </VSCTCompile>
-    <Content Include="Core\Resources\CakeCommand.png" />
-    <Content Include="Core\Resources\CakeCommandPackage.ico" />
     <Content Include="index.html" />
     <Content Include="stylesheet.css" />
+    <Content Include="Cake\Resources\TestCommand.png" />
+    <Content Include="Cake\Resources\TestCommandPackage.ico" />
+    <VSCTCompile Include="Cake\TestCommandPackage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -175,7 +175,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Core\VSPackage.resx">
+    <EmbeddedResource Include="Cake\VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
