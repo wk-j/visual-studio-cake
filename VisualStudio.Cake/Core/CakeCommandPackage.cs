@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 
-namespace VisualStudio.Cake.Test
+namespace VisualStudio.Cake.Core
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -38,9 +38,9 @@ namespace VisualStudio.Cake.Test
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(TestCommandPackage.PackageGuidString)]
+    [Guid(CakeCommandPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class TestCommandPackage : Package
+    public sealed class CakeCommandPackage : Package
     {
         /// <summary>
         /// TestCommandPackage GUID string.
@@ -48,9 +48,9 @@ namespace VisualStudio.Cake.Test
         public const string PackageGuidString = "facf9730-92d7-466c-97fe-7ea00efdd319";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestCommand"/> class.
+        /// Initializes a new instance of the <see cref="CakeCommand"/> class.
         /// </summary>
-        public TestCommandPackage()
+        public CakeCommandPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -66,7 +66,7 @@ namespace VisualStudio.Cake.Test
         /// </summary>
         protected override void Initialize()
         {
-            TestCommand.Initialize(this);
+            CakeCommand.Initialize(this);
             base.Initialize();
         }
 
