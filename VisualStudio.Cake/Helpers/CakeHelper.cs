@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -38,7 +41,7 @@ namespace VisualStudio.Cake.Helpers
             var process = new Process();
             process.StartInfo.FileName = "build.cmd";
             process.StartInfo.Arguments = $"-target {task}";
-            process.StartInfo.WorkingDirectory = workingDir; 
+            process.StartInfo.WorkingDirectory = workingDir;
             process.Start();
         }
 
@@ -49,37 +52,55 @@ namespace VisualStudio.Cake.Helpers
             ExecutePs(psFile, param);
         }
 
-        private static void ExecutePs(string scriptFile, params CommandParameter[] parameters)
+        private static Runspace CreateRunspace(string dir)
         {
-            var dir = new FileInfo(scriptFile).Directory.FullName;
             var runspaceConfiguration = RunspaceConfiguration.Create();
             var runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration);
             runspace.Open();
             runspace.SessionStateProxy.Path.SetLocation(dir);
+            return runspace;
+        }
 
+        private static void ExecutePs(string scriptFile, params CommandParameter[] parameters)
+        {
+            var dir = new FileInfo(scriptFile).Directory.FullName;
+            var runspace = CreateRunspace(dir);
             var scriptInvoker = new RunspaceInvoke(runspace);
             var pipeline = runspace.CreatePipeline();
-
             var command = new Command(scriptFile);
 
-            parameters.ToList().ForEach(x => {
-                command.Parameters.Add(x);
-            });
-
+            parameters.ToList().ForEach(command.Parameters.Add);
             pipeline.Commands.Add(command);
 
             var rs = pipeline.Invoke();
+            var output = OutputWindow();
 
-            rs.ToList().ForEach(x => {
-                Console.WriteLine(x);
+            rs.ToList().ForEach(x =>
+            {
+                output(x.ToString());
             });
 
-            pipeline.Output.ReadToEnd().ToList().ForEach(x => {
-                Console.WriteLine(x);
+            pipeline.Output.ReadToEnd().ToList().ForEach(x =>
+            {
+                output(x.ToString());
             });
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            pipeline.Error.ReadToEnd().ToList().ForEach(Console.WriteLine);
+            pipeline.Error.ReadToEnd().ToList().ForEach(x => {
+                output(x.ToString());
+            });
+        }
+
+        private static Action<string> OutputWindow()
+        {
+            var outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
+            var customGuid = new Guid("1ABDD7FB-F095-427A-B188-59CD35520C5A"); 
+
+            IVsOutputWindowPane outputPane;
+            outWindow.CreatePane(ref customGuid, "Cake" , 1, 1);
+            outWindow.GetPane(ref customGuid, out outputPane);
+            outputPane.Activate(); 
+
+            return (message) => outputPane.OutputString(message);
         }
     }
 }
