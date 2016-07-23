@@ -57,14 +57,20 @@ namespace VisualStudio.Cake.Core
 
         private void BuildCallback(object sender, EventArgs e)
         {
-            var dir = SolutionHelper.GetSolutionDir();
-            CakeHelper.ExecutePs("build", dir.FullName);
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                var dir = SolutionHelper.GetSolutionDir();
+                CakeHelper.ExecutePs("build", dir.FullName);
+            });
         }
 
         private void InitCallback(object sender, EventArgs e)
         {
-            var dir = SolutionHelper.GetSolutionDir();
-            CakeHelper.Init(dir.FullName);
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                var dir = SolutionHelper.GetSolutionDir();
+                CakeHelper.Init(dir.FullName);
+            });
         }
 
 
