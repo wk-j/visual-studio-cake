@@ -70,8 +70,16 @@ namespace VisualStudio.Cake.Helpers
 
             var rs = pipeline.Invoke();
 
-            var err = pipeline.Error.ReadToEnd();
-            var output = pipeline.Output.ReadToEnd();
+            rs.ToList().ForEach(x => {
+                Console.WriteLine(x);
+            });
+
+            pipeline.Output.ReadToEnd().ToList().ForEach(x => {
+                Console.WriteLine(x);
+            });
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            pipeline.Error.ReadToEnd().ToList().ForEach(Console.WriteLine);
         }
     }
 }
