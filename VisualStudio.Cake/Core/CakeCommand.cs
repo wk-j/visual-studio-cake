@@ -12,16 +12,13 @@ namespace VisualStudio.Cake.Core
     internal sealed class CakeCommand
     {
         public static readonly Guid CommandSet = new Guid("ac5c2a80-6a6f-41af-8aff-3c3627ecdae7");
-        private readonly Package package;
+        private readonly Package Package;
 
         private CakeCommand(Package package)
         {
-            if (package == null)
-            {
-                throw new ArgumentNullException("package");
-            }
+            if (package == null) throw new ArgumentNullException("package");
 
-            this.package = package;
+            this.Package = package;
 
             var commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
 
@@ -37,19 +34,9 @@ namespace VisualStudio.Cake.Core
             }
         }
 
-        public static CakeCommand Instance
-        {
-            get;
-            private set;
-        }
+        public static CakeCommand Instance { get; private set; }
 
-        private IServiceProvider ServiceProvider
-        {
-            get
-            {
-                return this.package;
-            }
-        }
+        private IServiceProvider ServiceProvider => this.Package;
 
         public static void Initialize(Package package)
         {

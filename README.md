@@ -4,5 +4,5 @@
 
 ## Enabling Execution of PowerShell Script
 
--  Start Windows PowerShell (x68) as Administrator
+-  Start Windows PowerShell (x86) as Administrator
 -  Run `Set-ExecutionPolicy RemoteSigned`
