@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidDynamicMenuPackageCmdSet" id="MyMenuController" context="UICONTEXT_SolutionHasMultipleProjects"/>
+  </VisibilityConstraints>
+  
+  <Commands package="guidDynamicMenuPackage">
+    <Groups>
+
+      <!--
+      <Group guid="guidDynamicMenuPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      </Group>
+      -->
+      
+      <!-- new -->
+      <Group guid="guidDynamicMenuPackageCmdSet" id="MyToolbarItemGroup" priority="0x4000">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="IDM_VS_TOOL_PROJWIN"/>
+      </Group>
+      <Group guid="guidDynamicMenuPackageCmdSet" id="MyMenuControllerGroup" priority="0x4000">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="MyMenuController"/>
+      </Group>
+    </Groups>
+
+    <!--new-->
+    <Menus>
+      <Menu guid="guidDynamicMenuPackageCmdSet" id="MyMenuController" priority="0x1000" type="MenuController">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="MyToolbarItemGroup"/>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText></ButtonText>
+        </Strings>
+      </Menu>
+      
+    </Menus>
+
+    <Buttons>
+      <!--
+      <Button guid="guidDynamicMenuPackageCmdSet" id="DynamicMenuId" priority="0x0100" type="Button">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke DynamicMenu</ButtonText>
+        </Strings>
+      </Button>
+      -->
+
+      <!--new-->
+      <Button guid="guidDynamicMenuPackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="MyMenuControllerGroup"/>
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidDynamicMenuPackageCmdSet" id="cmdidMyAnchorCommand" priority="0x0000">
+        <Parent guid="guidDynamicMenuPackageCmdSet" id="MyMenuControllerGroup"/>
+        <Icon guid="guidImages" id="bmpPicArrows"/>
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <CommandFlag>FixMenuController</CommandFlag>
+        <Strings>
+          <ButtonText>Set Startup Project</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\DynamicMenu.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidDynamicMenuPackage" value="{c0db142d-26d7-430d-9afc-560ee947e7ed}" />
+
+    <GuidSymbol name="guidDynamicMenuPackageCmdSet" value="{ec11b265-47d0-44a2-8f7e-930e5ae29806}">
+
+      <!--
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="DynamicMenuId" value="0x0100" />
+      -->
+
+      <!-- new -->
+      <IDSymbol name="MyToolbarItemGroup" value="0x1020"/>
+      <IDSymbol name="MyMenuControllerGroup" value="0x1025"/>
+      <IDSymbol name="MyMenuController" value="0x1030"/>
+      <IDSymbol name="cmdidMyAnchorCommand" value="0x0103"/>
+      <IDSymbol name="cmdidMyDynamicStartCommand" value="0x0104"/>
+
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{a82ff6ea-2a9e-4420-9b6e-7795dfdbb47b}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
