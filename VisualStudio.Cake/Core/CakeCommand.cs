@@ -14,8 +14,8 @@ namespace VisualStudio.Cake.Core
     public class Guids
     {
         public static readonly Guid CommandSet = new Guid("ac5c2a80-6a6f-41af-8aff-3c3627ecdae7");
-        public static readonly int InitId = 0x0100;
-        public static readonly int DynamicStartCommand = 0x0104;
+        //public static readonly uint InitId = 0x0100;
+        public static readonly int DynamicStartButton = 0x0104;
     }
 
     internal sealed class CakeCommand
@@ -31,8 +31,7 @@ namespace VisualStudio.Cake.Core
 
             _package = package;
 
-            var commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-
+            var commandService = GetService();
             if (commandService != null)
             {
                 /*
@@ -41,7 +40,9 @@ namespace VisualStudio.Cake.Core
                 commandService.AddCommand(initCommand);
                 */
 
-                var tasksId = new CommandID(Guids.CommandSet, Guids.DynamicStartCommand);
+                Output("create task command");
+
+                var tasksId = new CommandID(Guids.CommandSet, Guids.DynamicStartButton);
                 var tasksCommand = new OleMenuCommand(BuildCallback, tasksId);
                 tasksCommand.Visible = false;
                 tasksCommand.BeforeQueryStatus += BeforeQueryStatus;
@@ -49,8 +50,17 @@ namespace VisualStudio.Cake.Core
             }
         }
 
+        private OleMenuCommandService GetService()
+        {
+            return this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
+        }
+
+
         private void BeforeQueryStatus(object sender, EventArgs e)
         {
+            Output("before query status");
+
             var currentCommand = sender as OleMenuCommand;
             currentCommand.Visible = true;
             currentCommand.Text = "Init";
@@ -59,10 +69,11 @@ namespace VisualStudio.Cake.Core
             CreateCommands();
         }
 
-
         private void CreateCommands()
         {
-            var mcs = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            Output("create command");
+
+            var mcs = GetService();
             if (_commands == null)
                 _commands = new List<OleMenuCommand>();
 
@@ -75,11 +86,13 @@ namespace VisualStudio.Cake.Core
             var cake = Path.Combine(path, "build.cake");
             var list = CakeParser.ParseFile(new FileInfo(cake)).Select(x => x.Name).ToList();
 
-            var j = 1;
+            Output("task length = " + list.Count);
+
+            var index = 1;
             foreach (var ele in list)
             {
                 Output(ele);
-                var menuCommandID = new CommandID(Guids.CommandSet, Guids.DynamicStartCommand + j++);
+                var menuCommandID = new CommandID(Guids.CommandSet, Guids.DynamicStartButton + index++);
                 var command = new OleMenuCommand(this.BuildCallback, menuCommandID);
                 command.Text = "Cake: " + ele;
                 command.BeforeQueryStatus += (x, y) => { (x as OleMenuCommand).Visible = true; };

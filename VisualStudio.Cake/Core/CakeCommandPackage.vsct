@@ -12,14 +12,34 @@
       <Group guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" priority="0x0600" >
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
       </Group>
-      <Group guid="guidCakeCommandPackageCmdSet" id="DynamicMenuControllerGroup" priority="0x0600" >
-        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenuController" />
+      <Group guid="guidCakeCommandPackageCmdSet" id="DynamicMenuGroup" priority="0x0600" >
+        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenu" />
       </Group>
     </Groups>
 
+    <Menus>
+      <Menu guid="guidCakeCommandPackageCmdSet" id="DynamicMenu" priority="0x1000" type="Menu">
+        <Parent guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Cake</ButtonText>
+        </Strings>
+      </Menu>
+
+      <!--
+      <Menu guid="guidCakeCommandPackageCmdSet" id="CakeMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
+        <Strings>
+          <ButtonText>Cake</ButtonText>
+          <CommandName>Cake</CommandName>
+        </Strings>
+      </Menu>
+       -->
+    </Menus>
+
     <Buttons>
-      <Button guid="guidCakeCommandPackageCmdSet" id="DynamicStartCommand" priority="0x1000" >
-        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenuControllerGroup" />
+      <Button guid="guidCakeCommandPackageCmdSet" id="DynamicStartButton" priority="0x1000" >
+        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenuGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
@@ -41,25 +61,6 @@
       <Bitmap guid="guidImages" href="Resources\CakeCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
     </Bitmaps>
 
-    <Menus>
-      <Menu guid="guidCakeCommandPackageCmdSet" id="DynamicMenuController" priority="0x1000" type="Menu">
-        <Parent guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" />
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Cake</ButtonText>
-        </Strings>
-      </Menu>
-
-      <!--
-      <Menu guid="guidCakeCommandPackageCmdSet" id="CakeMenu" priority="0x700" type="Menu">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
-        <Strings>
-          <ButtonText>Cake</ButtonText>
-          <CommandName>Cake</CommandName>
-        </Strings>
-      </Menu>
-       -->
-    </Menus>
 
   </Commands>
 
@@ -76,13 +77,13 @@
       <IDSymbol name="InitButton" value="0x0100" />
       -->
 
-      <IDSymbol name="MyToolbarItemGroup" value="0x1021" />
-      <IDSymbol name="DynamicMenuControllerGroup" value="0x1025" />
-      <IDSymbol name="DynamicMenuController" value ="0x1030"/>
+      <IDSymbol name="MyToolbarItemGroup" value="0x1020" />
+      <IDSymbol name="DynamicMenuGroup" value="0x1025" />
+      <IDSymbol name="DynamicMenu" value ="0x1030"/>
       <!-- NOTE: The following command expands at run time to some number of ids.
          Try not to place command ids after it (e.g. 0x0105, 0x0106).
          If you must add a command id after it, make the gap very large (e.g. 0x200) -->
-      <IDSymbol name="DynamicStartCommand" value="0x0104" />
+      <IDSymbol name="DynamicStartButton" value="0x0104" />
 
     </GuidSymbol>
 

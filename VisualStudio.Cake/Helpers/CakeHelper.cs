@@ -1,16 +1,12 @@
-﻿using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VisualStudio.Cake.Helpers
 {
@@ -18,7 +14,7 @@ namespace VisualStudio.Cake.Helpers
     {
         static Action<string> Output = OutputWindow();
 
-        public static Action<string> OutputWindow()
+        static CakeHelper()
         {
             var outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             var customGuid = new Guid("1ABDD7FB-F095-427A-B188-59CD35520C5A");
@@ -28,7 +24,12 @@ namespace VisualStudio.Cake.Helpers
             outWindow.GetPane(ref customGuid, out outputPane);
             outputPane.Activate();
 
-            return (message) => outputPane.OutputString(message + Environment.NewLine);
+            Output = (message) => outputPane.OutputString(message + Environment.NewLine);
+        }
+
+        public static Action<string> OutputWindow()
+        {
+            return Output;
         }
 
         public static void Init(string solutionPath)

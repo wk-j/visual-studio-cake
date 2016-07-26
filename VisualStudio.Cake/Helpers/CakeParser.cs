@@ -10,6 +10,15 @@ namespace VisualStudio.Cake.Helpers
         public string Name { set; get; }
     }
 
+    public class SimpleParser
+    {
+        public static IEnumerable<Task> ParseFile(FileInfo file)
+        {
+            var lines = File.ReadLines(file.FullName).Select(x => x.Trim()).Where(x => x.StartsWith("Task"));
+            return Enumerable.Empty<Task>();
+        }
+    }
+
     public class CakeParser
     {
         static readonly Parser<string> TaskName =
@@ -33,6 +42,7 @@ namespace VisualStudio.Cake.Helpers
         public static IEnumerable<Task> ParseFile(FileInfo file)
         {
             if (!file.Exists) return Enumerable.Empty<Task>();
+
             var content = File.ReadAllText(file.FullName);
             var lines = content.Split('\n').Select(x => x.Trim()).Where(x => x.StartsWith("Task(\""));
             var task = lines.Select(Task.Parse);
