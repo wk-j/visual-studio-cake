@@ -11,6 +11,17 @@ var package = "VisualStudio.Cake/bin/Debug/VisualStudio.Cake.vsix";
 
 Task("build")
     .Does(() => {
+        MSBuild(solution, new MSBuildSettings {
+            Verbosity = Verbosity.Minimal,
+            ToolVersion = MSBuildToolVersion.VS2015,
+            Configuration = "Debug",
+            ToolPath = @"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe",
+            PlatformTarget = PlatformTarget.MSIL
+        });
+    });
+
+Task(".net-build")
+    .Does(() => {
         DotNetBuild(solution, settings => {
             settings.SetConfiguration("Debug")
                 .WithTarget("Build");
@@ -18,6 +29,7 @@ Task("build")
     });
 
 Task("create-github-release")
+    .IsDependentOn("build")
     .Does(() => {
         var asm = ParseAssemblyInfo("./Visualstudio.Cake/Properties/AssemblyInfo.cs");
         var version = asm.AssemblyVersion;
