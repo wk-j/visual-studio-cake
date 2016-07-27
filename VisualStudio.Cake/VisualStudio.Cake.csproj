@@ -68,10 +68,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\Resources\BuildSolution_104.png" />
+    <Content Include="Core\Resources\Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Core\Resources\Queuenewbuild_13090.png" />
     <Content Include="index.html" />
     <Content Include="stylesheet.css" />
-    <Content Include="Core\Resources\CakeCommand.png" />
-    <Content Include="Core\Resources\CakeCommandPackage.ico" />
     <VSCTCompile Include="Core\CakeCommandPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>

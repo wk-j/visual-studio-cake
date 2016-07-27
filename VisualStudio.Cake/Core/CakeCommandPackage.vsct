@@ -47,16 +47,17 @@
       </Button>
       <Button guid="guidCakeCommandPackageCmdSet" id="InitButton" priority="0x0100" type="Button">
         <Parent guid="guidCakeCommandPackageCmdSet" id="InitGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="initialize" id="initialize" />
         <Strings>
           <ButtonText>Initialize</ButtonText>
         </Strings>
       </Button>
     </Buttons>
-    <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\CakeCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
-    </Bitmaps>
 
+    <Bitmaps>
+      <Bitmap guid="initialize" href="Resources\Queuenewbuild_13090.png" usedList="initialize"/>
+      <Bitmap guid="build" href="Resources\BuildSolution_104.png" usedList="build"/>
+    </Bitmaps>
 
   </Commands>
 
@@ -79,16 +80,15 @@
          Try not to place command ids after it (e.g. 0x0105, 0x0106).
          If you must add a command id after it, make the gap very large (e.g. 0x200) -->
       <IDSymbol name="DynamicStartButton" value="0x0104" />
-
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{80eb5aef-17f9-47d3-86ea-52ae3ce48e52}" >
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    <GuidSymbol name="initialize" value="{032A148F-2B38-4D32-A694-5C285D29AFE8}" >
+      <IDSymbol name="initialize" value="1" />
     </GuidSymbol>
+
+    <GuidSymbol name="build" value="{9401A052-8370-4844-B351-B73E3D8E7248}" >
+      <IDSymbol name="build" value="1" />
+    </GuidSymbol>
+  
   </Symbols>
 </CommandTable>
