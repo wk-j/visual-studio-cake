@@ -59,7 +59,6 @@ namespace VisualStudio.Cake.Core
 
             var currentCommand = sender as OleMenuCommand;
             currentCommand.Visible = true;
-            currentCommand.Text = "Task ...";
             currentCommand.Enabled = false;
 
             CreateCommands();

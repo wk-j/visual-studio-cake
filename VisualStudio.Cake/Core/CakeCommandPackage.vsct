@@ -33,28 +33,25 @@
           <CommandName>Cake</CommandName>
         </Strings>
       </Menu>
-
     </Menus>
 
     <Buttons>
       <Button guid="guidCakeCommandPackageCmdSet" id="DynamicStartButton" priority="0x1000" >
-        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenuGroup" />
+        <Parent guid="guidCakeCommandPackageCmdSet" id="InitGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Project</ButtonText>
+          <ButtonText>Tasks...</ButtonText>
         </Strings>
       </Button>
-
       <Button guid="guidCakeCommandPackageCmdSet" id="InitButton" priority="0x0100" type="Button">
         <Parent guid="guidCakeCommandPackageCmdSet" id="InitGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Init</ButtonText>
+          <ButtonText>Initialize</ButtonText>
         </Strings>
       </Button>
-
     </Buttons>
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\CakeCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
