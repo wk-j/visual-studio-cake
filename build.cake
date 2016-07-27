@@ -1,9 +1,13 @@
 #tool "nuget:?package=Fixie"
 #addin "nuget:?package=Cake.Watch"
 
+var user = EnvironmentVariable("ghu");
+var pass = EnvironmentVariable("ghp");
+
 var solution = "VisualStudio.Cake.sln";
 var testProj = "VisualStudio.Cake.Tests/VisualStudio.Cake.Tests.csproj";
 var testDll = "VisualStudio.Cake.Tests/bin/Debug/VisualStudio.Cake.Tests.dll";
+var package = "VisualStudio.Cake/bin/Debug/VisualStudio.Cake.vsix";
 
 Task("build")
     .Does(() => {
@@ -12,33 +16,34 @@ Task("build")
                 .WithTarget("Build");
         });
     });
-Task("hello")
-    .Does(() => {
-            Console.WriteLine("Hello, world!");
-    });
 
-Task("test")
+Task("create-github-release")
     .Does(() => {
-        DotNetBuild(testProj);
-        Fixie(testDll);
-    });
+        var asm = ParseAssemblyInfo("./Visualstudio.Cake/Properties/AssemblyInfo.cs");
+        var version = asm.AssemblyVersion;
+        var tag = string.Format("v{0}", version);
+        var args = string.Format("tag -a {0} -m \"{0}\"", tag);
+        var owner = "wk-j";
+        var repo = "visual-studio-cake";
 
-Task("ts")
-    .Does(() => {
-        Fixie(testDll);
-    });
-
-Task("watch")
-    .Does(() => {
-        var settings = new WatchSettings {
-            Recursive = true,
-            Path = "./",
-            Pattern = "*Tests.cs"
-        };
-        Watch(settings, (changed) => {
-            RunTarget("test");
+        StartProcess("git", new ProcessSettings {
+            Arguments = args
         });
+
+        StartProcess("git", new ProcessSettings {
+            Arguments = string.Format("push https://{0}:{1}@github.com/wk-j/{2}.git {3}", user, pass, repo, tag)
+        });
+
+        GitReleaseManagerCreate(user, pass, owner , repo, new GitReleaseManagerCreateSettings {
+            Name              = tag,
+            InputFilePath = "RELEASE.md",
+            Prerelease        = false,
+            TargetCommitish   = "master",
+        });
+        GitReleaseManagerAddAssets(user, pass, owner, repo, tag, package);
+        GitReleaseManagerPublish(user, pass, owner , repo, tag);
     });
+
 
 var target = Argument("target", "default");
 RunTarget(target);

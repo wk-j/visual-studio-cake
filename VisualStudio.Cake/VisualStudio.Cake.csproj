@@ -74,6 +74,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Core\Resources\Queuenewbuild_13090.png" />
+    <Content Include="Core\Resources\Screen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="index.html" />
     <Content Include="stylesheet.css" />
     <VSCTCompile Include="Core\CakeCommandPackage.vsct">
