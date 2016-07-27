@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Helpers\CakeHelper.cs" />
     <Compile Include="Helpers\CakeParser.cs" />
+    <Compile Include="Helpers\SimpleParser.cs" />
     <Compile Include="Helpers\SolutionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\CakeCommand.cs" />

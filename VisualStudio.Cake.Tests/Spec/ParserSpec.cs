@@ -14,8 +14,7 @@ namespace VisualStudio.Cake.Tests.Spec
         public void ShouldParseFile()
         {
             var file = @"Z:\Source\project\extension\VisualStudio.Cake\build.cake";
-
-            var rs = CakeParser.ParseFile(new System.IO.FileInfo(file));
+            var rs = SimpleParser.ParseFile(new System.IO.FileInfo(file));
         }
     }
 }

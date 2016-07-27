@@ -4,11 +4,11 @@
   <Extern href="vsshlids.h"/>
   <Commands package="guidCakeCommandPackage">
     <Groups>
-    <!--
+
       <Group guid="guidCakeCommandPackageCmdSet" id="InitGroup" priority="0x0600">
         <Parent guid="guidCakeCommandPackageCmdSet" id="CakeMenu"/>
       </Group>
-      -->
+
       <Group guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" priority="0x0600" >
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
       </Group>
@@ -26,7 +26,6 @@
         </Strings>
       </Menu>
 
-      <!--
       <Menu guid="guidCakeCommandPackageCmdSet" id="CakeMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
         <Strings>
@@ -34,7 +33,7 @@
           <CommandName>Cake</CommandName>
         </Strings>
       </Menu>
-       -->
+
     </Menus>
 
     <Buttons>
@@ -47,7 +46,7 @@
           <ButtonText>Project</ButtonText>
         </Strings>
       </Button>
-      <!--
+
       <Button guid="guidCakeCommandPackageCmdSet" id="InitButton" priority="0x0100" type="Button">
         <Parent guid="guidCakeCommandPackageCmdSet" id="InitGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
@@ -55,7 +54,7 @@
           <ButtonText>Init</ButtonText>
         </Strings>
       </Button>
-      -->
+
     </Buttons>
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\CakeCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
@@ -71,11 +70,10 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCakeCommandPackageCmdSet" value="{ac5c2a80-6a6f-41af-8aff-3c3627ecdae7}">
-      <!--
-      <IDSymbol name="InitGroup" value="0x1020" />
-      <IDSymbol name="CakeMenu" value="0x700" />
-      <IDSymbol name="InitButton" value="0x0100" />
-      -->
+
+      <IDSymbol name="InitGroup" value="0x1050" />
+      <IDSymbol name="CakeMenu" value="0x1051" />
+      <IDSymbol name="InitButton" value="0x1052" />
 
       <IDSymbol name="MyToolbarItemGroup" value="0x1020" />
       <IDSymbol name="DynamicMenuGroup" value="0x1025" />

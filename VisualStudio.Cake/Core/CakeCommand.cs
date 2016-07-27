@@ -14,7 +14,7 @@ namespace VisualStudio.Cake.Core
     public class Guids
     {
         public static readonly Guid CommandSet = new Guid("ac5c2a80-6a6f-41af-8aff-3c3627ecdae7");
-        //public static readonly uint InitId = 0x0100;
+        public static readonly int InitButton = 0x1052;
         public static readonly int DynamicStartButton = 0x0104;
     }
 
@@ -34,16 +34,14 @@ namespace VisualStudio.Cake.Core
             var commandService = GetService();
             if (commandService != null)
             {
-                /*
-                var initId = new CommandID(Guids.CommandSet, Guids.InitId);
+                var initId = new CommandID(Guids.CommandSet, Guids.InitButton);
                 var initCommand = new MenuCommand(this.InitCallback, initId);
                 commandService.AddCommand(initCommand);
-                */
 
                 Output("create task command");
 
                 var tasksId = new CommandID(Guids.CommandSet, Guids.DynamicStartButton);
-                var tasksCommand = new OleMenuCommand(BuildCallback, tasksId);
+                var tasksCommand = new OleMenuCommand((x, y) => { }, tasksId);
                 tasksCommand.Visible = false;
                 tasksCommand.BeforeQueryStatus += BeforeQueryStatus;
                 commandService.AddCommand(tasksCommand);
@@ -53,9 +51,7 @@ namespace VisualStudio.Cake.Core
         private OleMenuCommandService GetService()
         {
             return this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-
         }
-
 
         private void BeforeQueryStatus(object sender, EventArgs e)
         {
@@ -63,8 +59,8 @@ namespace VisualStudio.Cake.Core
 
             var currentCommand = sender as OleMenuCommand;
             currentCommand.Visible = true;
-            currentCommand.Text = "Init";
-            currentCommand.Enabled = true;
+            currentCommand.Text = "Task ...";
+            currentCommand.Enabled = false;
 
             CreateCommands();
         }
@@ -84,7 +80,7 @@ namespace VisualStudio.Cake.Core
 
             var path = SolutionHelper.GetSolutionDir().FullName;
             var cake = Path.Combine(path, "build.cake");
-            var list = CakeParser.ParseFile(new FileInfo(cake)).Select(x => x.Name).ToList();
+            var list = SimpleParser.ParseFile(new FileInfo(cake)).Select(x => x.Name).ToList();
 
             Output("task length = " + list.Count);
 
