@@ -8,24 +8,9 @@
       <Group guid="guidCakeCommandPackageCmdSet" id="InitGroup" priority="0x0600">
         <Parent guid="guidCakeCommandPackageCmdSet" id="CakeMenu"/>
       </Group>
-
-      <Group guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" priority="0x0600" >
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
-      </Group>
-      <Group guid="guidCakeCommandPackageCmdSet" id="DynamicMenuGroup" priority="0x0600" >
-        <Parent guid="guidCakeCommandPackageCmdSet" id="DynamicMenu" />
-      </Group>
     </Groups>
 
     <Menus>
-      <Menu guid="guidCakeCommandPackageCmdSet" id="DynamicMenu" priority="0x1000" type="Menu">
-        <Parent guid="guidCakeCommandPackageCmdSet" id="MyToolbarItemGroup" />
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Cake</ButtonText>
-        </Strings>
-      </Menu>
-
       <Menu guid="guidCakeCommandPackageCmdSet" id="CakeMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
         <Strings>
@@ -68,14 +53,9 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCakeCommandPackageCmdSet" value="{ac5c2a80-6a6f-41af-8aff-3c3627ecdae7}">
-
       <IDSymbol name="InitGroup" value="0x1050" />
       <IDSymbol name="CakeMenu" value="0x1051" />
       <IDSymbol name="InitButton" value="0x1052" />
-
-      <IDSymbol name="MyToolbarItemGroup" value="0x1020" />
-      <IDSymbol name="DynamicMenuGroup" value="0x1025" />
-      <IDSymbol name="DynamicMenu" value ="0x1030"/>
       <!-- NOTE: The following command expands at run time to some number of ids.
          Try not to place command ids after it (e.g. 0x0105, 0x0106).
          If you must add a command id after it, make the gap very large (e.g. 0x200) -->

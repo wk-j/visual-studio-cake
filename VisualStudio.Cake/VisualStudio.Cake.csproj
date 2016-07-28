@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Helpers\CakeHelper.cs" />
     <Compile Include="Helpers\CakeParser.cs" />
+    <Compile Include="Helpers\FixieHelper.cs" />
     <Compile Include="Helpers\SimpleParser.cs" />
     <Compile Include="Helpers\SolutionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +79,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="index.html" />
-    <Content Include="stylesheet.css" />
     <VSCTCompile Include="Core\CakeCommandPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
