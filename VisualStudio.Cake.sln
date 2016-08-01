@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio.Cake", "Visual
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio.Cake.Tests", "VisualStudio.Cake.Tests\VisualStudio.Cake.Tests.csproj", "{BF4F2385-0234-4AAC-9849-B6AC83D5E9B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3F000CB-F8A1-45F4-9AD2-3E9005916A71}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		RELEASE.md = RELEASE.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -89,7 +89,7 @@ namespace VisualStudio.Cake.Core
                 Output(ele);
                 var menuCommandID = new CommandID(Guids.CommandSet, Guids.DynamicStartButton + index++);
                 var command = new OleMenuCommand(this.BuildCallback, menuCommandID);
-                command.Text = "Cake: " + ele;
+                command.Text = "> " + ele;
                 command.BeforeQueryStatus += (x, y) => { (x as OleMenuCommand).Visible = true; };
                 _commands.Add(command);
                 mcs.AddCommand(command);
@@ -109,7 +109,7 @@ namespace VisualStudio.Cake.Core
         {
             var cmd = (OleMenuCommand)sender;
             var text = cmd.Text;
-            var task = text.Substring(text.IndexOf(':') + 1).Trim();
+            var task = text.Substring(2);
 
             System.Threading.Tasks.Task.Run(() =>
             {
