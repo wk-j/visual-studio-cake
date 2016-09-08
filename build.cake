@@ -35,7 +35,7 @@ Task("create-github-release")
         var version = asm.AssemblyVersion;
         var tag = string.Format("v{0}", version);
         var args = string.Format("tag -a {0} -m \"{0}\"", tag);
-        var owner = "wk-j";
+        var owner = "visual-studio-extension";
         var repo = "visual-studio-cake";
 
         StartProcess("git", new ProcessSettings {

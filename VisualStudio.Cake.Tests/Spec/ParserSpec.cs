@@ -16,5 +16,13 @@ namespace VisualStudio.Cake.Tests.Spec
             var file = @"Z:\Source\project\extension\VisualStudio.Cake\build.cake";
             var rs = SimpleParser.ParseFile(new System.IO.FileInfo(file));
         }
+
+
+        [Fact]
+        public void ShouldParseNestedFile()
+        {
+            var file = @"Z:\source\project\extension\VisualStudio.Cake\VisualStudio.Cake.Tests\Tasks\build.cake";
+            var rs = SimpleParser.ParseFile(new System.IO.FileInfo(file));
+        }
     }
 }
