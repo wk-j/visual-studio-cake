@@ -13,7 +13,7 @@ Simple Visual Studio extension to execute Cake tasks.
 
 ### Execute task from Main Menu
 
-> ![](VisualStudio.Cake/Core/Resources/Screen.png)
+![](VisualStudio.Cake/Core/Resources/Screen.png)
 
 ## Enabling execution of PowerShell script in Visual Studio
 
